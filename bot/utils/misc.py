@@ -1,4 +1,5 @@
 import base64
+from typing import List, Optional
 
 
 class URLSafe:
@@ -14,7 +15,7 @@ class URLSafe:
         encoded = base64.urlsafe_b64encode(data.encode("utf-8"))
         return self.delpad(encoded.decode("utf-8"))
 
-    def decode(self, data: str) -> int:
+    def decode(self, data: str) -> Optional[int]:
         padded = self.addpad(data)
         decoded = base64.urlsafe_b64decode(padded)
         return decoded.decode("utf-8")
@@ -24,7 +25,7 @@ URLSafe = URLSafe()
 
 
 class Commands:
-    cmds: list[str] = []
+    cmds: List[str] = []
 
     def __init__(self):
         self.start = "start"

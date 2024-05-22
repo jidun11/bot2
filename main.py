@@ -1,6 +1,7 @@
 import asyncio
 import functools
 import sys
+from typing import Callable
 
 from pyrogram.errors import RPCError
 from pyrogram.types import BotCommand
@@ -39,7 +40,7 @@ async def main():
 
 def rpchndlr(func):
     @functools.wraps(func)
-    async def wrapper() -> callable:
+    async def wrapper() -> Callable:
         try:
             return await func()
         except RPCError as e:

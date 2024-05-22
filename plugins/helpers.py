@@ -1,4 +1,5 @@
 import functools
+from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 from pyrogram.errors import RPCError
 from pyrogram.helpers import ikb
@@ -8,18 +9,18 @@ from bot import Bot
 
 
 class Helpers:
-    cacheids = {}
+    cacheids: Dict[str, Any] = {}
     protectc: bool = False
     generate: bool = False
-    adminids: list[int | None] = []
-    fsubcids: list[int | None] = []
-    startmsg: str = ""
-    forcemsg: str = ""
+    adminids: Optional[List[int]] = []
+    fsubcids: Optional[List[int]] = []
+    startmsg: Optional[str] = None
+    forcemsg: Optional[str] = None
 
     def __init__(self, Client: Bot):
         self._client_ = Client
 
-    def gvars(self, vari: str) -> list:
+    def gvars(self, vari: str) -> Dict[str, Any]:
         return self._client_.var.vars.get(vari)
 
     def initializing(self):
@@ -43,14 +44,14 @@ class Helpers:
             return f"https://t.me/share/url?url={url}"
         return "https://t.me/" f"{self._client_.me.username}?start={url}"
 
-    def clear(self):
+    def clear(self) -> Optional[Dict[str, Any]]:
         self.cacheids = {}
 
-    def reload(self) -> dict:
+    def reload(self) -> Dict[str, Any]:
         self.clear()
         return self.initializing()
 
-    async def cached(self) -> dict:
+    async def cached(self) -> Dict[str, Any]:
         self.reload()
         if not self.fsubcids:
             return None
@@ -68,7 +69,7 @@ class Helpers:
             except RPCError as e:
                 self._client_.log.warning(f"FSubID-{i + 1}: {e}")
 
-    async def usrikb(self, message: Message, user: int) -> None:
+    async def usrikb(self, message: Message, user: int) -> Optional[ikb]:
         nojoin = await self.nojoin(user)
         if not self.fsubcids or not nojoin:
             return None
@@ -82,7 +83,7 @@ class Helpers:
             layouts.append([("Try Again", self.urlstr(message.command[1]), "url")])
         return ikb(layouts)
 
-    async def nojoin(self, user: int) -> list[int] | None:
+    async def nojoin(self, user: int) -> Optional[List[int]]:
         joined = set()
         if not self.fsubcids or user in self.adminids:
             return None
@@ -99,7 +100,7 @@ class Helpers:
         data_ = last * abs(self._client_.env.DATABASE_ID)
         return self._client_.url.encode(f"id-{_data}-{data_}")
 
-    def decode(self, string: str) -> list[int] | range:
+    def decode(self, string: str) -> Union[List[int], range]:
         dbchid = self._client_.env.DATABASE_ID
         decoded = self._client_.url.decode(string).split("-")
         if len(decoded) == 2:
@@ -109,7 +110,7 @@ class Helpers:
             end = int(int(decoded[2]) / abs(dbchid))
             return range(start, end + 1) if start < end else range(start, end - 1, -1)
 
-    async def getmsgs(self, ids: int):
+    async def getmsgs(self, ids: int) -> Optional[Message]:
         return await self._client_.get_messages(self._client_.env.DATABASE_ID, ids)
 
     async def copymsgs(self, msg: Message, user: int) -> Message:
@@ -121,7 +122,7 @@ class Helpers:
         )
         return copied.id
 
-    def admikb(self) -> ikb:
+    def admikb(self) -> List[List[Tuple[str, str]]]:
         buttons = []
         if self.fsubcids:
             for cid in self.fsubcids:
@@ -138,7 +139,7 @@ helpers = Helpers(Bot)
 
 class Decorator:
     @staticmethod
-    def admins(func: callable) -> callable:
+    def admins(func: callable) -> Callable:
         @functools.wraps(func)
         async def wrapped(bot, event):
             user = Decorator.gusr(event)
@@ -148,14 +149,14 @@ class Decorator:
         return wrapped
 
     @staticmethod
-    def gusr(event: Message | CallbackQuery) -> int:
+    def gusr(event: Union[Message, CallbackQuery]) -> Optional[int]:
         if hasattr(event, "from_user"):
             return event.from_user.id
         if hasattr(event, "message") and hasattr(event.message, "chat"):
             return event.message.chat.id
         return -1
 
-    def __call__(self, decors) -> callable:
+    def __call__(self, decors: List[str]) -> Callable:
         def decorator(func):
             if "adminsOnly" in decors:
                 func = self.admins(func)
@@ -167,7 +168,7 @@ class Decorator:
 decorator = Decorator()
 
 
-class Markup:
+class Markup(List[List[Tuple[str, str]]]):
     HOME = [
         [("Generate Controller", "set-gen")],
         [("Start Text", "set-strtmsg"), ("Force Text", "set-frcmsg")],

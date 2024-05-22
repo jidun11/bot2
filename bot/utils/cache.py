@@ -1,3 +1,5 @@
+from typing import Any, Dict, Optional
+
 from config import Config
 
 from .db import Database
@@ -7,9 +9,9 @@ from .logger import Logger
 class Cache:
     def __init__(self, db: Database) -> None:
         self.db = db
-        self.data = None
+        self.data: Optional[Dict[str, Any]] = None
 
-    async def fetching(self) -> dict:
+    async def fetching(self) -> Dict[str, Any]:
         self.clear()
         await self.relown()
         self.data = await self.gvars()
@@ -18,7 +20,7 @@ class Cache:
     def clear(self) -> None:
         self.data = None
 
-    async def gvars(self) -> dict:
+    async def gvars(self) -> Dict[str, Any]:
         return await self.db.gvars("BOT_VARS")
 
     async def admnvar(self) -> None:
@@ -32,7 +34,7 @@ class Cache:
             await self.db.invar("BOT_VARS", "ADMIN_IDS", owner)
 
     @property
-    def vars(self) -> dict:
+    def vars(self) -> Dict[str, Any]:
         return self.data
 
 

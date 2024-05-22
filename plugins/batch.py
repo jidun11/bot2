@@ -1,4 +1,5 @@
 import contextlib
+from typing import Optional
 
 from pyrogram.filters import command, private
 from pyrogram.handlers import MessageHandler as Msg
@@ -16,7 +17,7 @@ async def batch(client: Bot, message: Message):
     uid = message.from_user.id
     cdb = client.env.DATABASE_ID
 
-    async def ask(text, link) -> None:
+    async def ask(text: str, link: str) -> Optional[Message]:
         cask = await client.ask(
             chat_id=cid,
             text=text,

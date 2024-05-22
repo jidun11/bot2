@@ -1,6 +1,7 @@
 import io
 import os
 import subprocess
+from typing import Any
 
 from meval import meval
 from pyrogram.filters import command, private, user
@@ -31,7 +32,7 @@ async def evaluate(client: Bot, message: Message):
         "u": (message.reply_to_message or message).from_user,
     }
 
-    def _print(*args, **kwargs):
+    def _print(*args, **kwargs) -> Any:
         print_out = io.StringIO()
         print(*args, file=print_out, **kwargs)
         return print_out.getvalue()
