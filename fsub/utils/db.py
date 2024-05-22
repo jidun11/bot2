@@ -2,7 +2,7 @@ from typing import Any, Dict, List, Optional, Union
 
 from motor.motor_asyncio import AsyncIOMotorClient
 
-from config import Config
+from ..config import Config
 
 
 class Database:

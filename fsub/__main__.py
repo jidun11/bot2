@@ -6,8 +6,9 @@ from typing import Callable
 from pyrogram.errors import RPCError
 from pyrogram.types import BotCommand
 
-from bot import Bot
-from plugins import helpers, loadplugin
+from fsub import Bot
+
+from .plugins import helpers, loadplugin
 
 
 async def main():

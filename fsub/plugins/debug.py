@@ -8,7 +8,7 @@ from pyrogram.filters import command, private, user
 from pyrogram.handlers import MessageHandler as Msg
 from pyrogram.types import Message
 
-from bot import Bot
+from fsub import Bot
 
 
 async def log(_: Bot, message: Message):
@@ -66,7 +66,7 @@ async def restart(client: Bot, message: Message):
     await message.delete()
     with open("log.txt", "r+") as w:
         w.truncate(0)
-    subprocess.run(["python", "main.py"])
+    subprocess.run(["python", "-m", "fsub"])
 
 
 Bot.hndlr(Msg(log, filters=command(Bot.cmd.log) & private & user(Bot.env.OWNER_ID)))

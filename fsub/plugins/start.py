@@ -5,7 +5,7 @@ from pyrogram.filters import command, private
 from pyrogram.handlers import MessageHandler as Msg
 from pyrogram.types import Message
 
-from bot import Bot
+from fsub import Bot
 
 from .helpers import helpers
 

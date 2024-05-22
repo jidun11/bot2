@@ -1,20 +1,19 @@
 [tool.poetry]
-name = "fsub"
-version = "0.0.1"
-description = "File Sharing Telegram Bot"
-authors = ["ugorwx"]
-license = "gpl-3.0-only"
 package-mode = false
+name = "fsub"
+version = "0.1.0"
+description = "File Sharing Telegram Bot"
+authors = ["ilhamm <ilhamm@murena.io>"]
+license = "GPL-V3"
+readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 pyrofork = "^2.3.21.post3"
-tgcrypto-pyrofork = "^1.2.6"
+TgCrypto-pyrofork = "^1.2.6"
 uvloop = "^0.19.0"
-meval = "^2.5"
-python-dotenv = "^1.0.1"
 motor = {extras = ["srv"], version = "^3.4.0"}
-
+meval = "^2.5"
 
 [build-system]
 requires = ["poetry-core"]

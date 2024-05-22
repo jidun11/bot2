@@ -5,7 +5,7 @@ from pyrogram.errors import RPCError
 from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 
-from bot import Bot
+from fsub import Bot
 
 
 class Helpers:

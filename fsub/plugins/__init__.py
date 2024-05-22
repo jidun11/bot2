@@ -1,8 +1,7 @@
 import os
 from importlib import import_module
 
-from bot.utils import Logger
-
+from ..logger import Logger
 from .helpers import helpers
 
 __all__ = ["helpers"]

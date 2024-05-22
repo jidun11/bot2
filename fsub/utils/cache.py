@@ -1,9 +1,8 @@
 from typing import Any, Dict, Optional
 
-from config import Config
-
+from ..config import Config
+from ..logger import Logger
 from .db import Database
-from .logger import Logger
 
 
 class Cache:

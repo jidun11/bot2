@@ -6,7 +6,7 @@ from pyrogram.handlers import MessageHandler as Msg
 from pyrogram.helpers import ikb
 from pyrogram.types import CallbackQuery, Message
 
-from bot import Bot
+from fsub import Bot
 
 from .helpers import Markup, decorator, helpers
 

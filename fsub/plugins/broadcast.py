@@ -10,7 +10,7 @@ from pyrogram.helpers import ikb
 from pyrogram.raw.functions import Ping
 from pyrogram.types import CallbackQuery, Message
 
-from bot import Bot
+from fsub import Bot
 
 from .helpers import Markup, decorator, helpers
 

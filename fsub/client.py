@@ -1,9 +1,9 @@
 import uvloop
 from pyrogram import Client
 
-from config import Config
-
-from .utils import Cache, Commands, Database, Logger, URLSafe
+from .config import Config
+from .logger import Logger
+from .utils import Cache, Commands, Database, URLSafe
 
 
 class Bot(Client):
