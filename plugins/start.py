@@ -21,7 +21,10 @@ async def start(client: Bot, message: Message):
 
     if len(message.command) == 1:
         if user.id in helpers.adminids:
-            await message.reply(helpers.startmsg, reply_markup=helpers.admikb())
+            await message.reply(
+                helpers.startmsg.format(first=fname, full=full, mention=ment),
+                reply_markup=helpers.admikb(),
+            )
         else:
             await message.reply(
                 helpers.startmsg.format(first=fnme, full=full, mention=ment),
@@ -33,7 +36,6 @@ async def start(client: Bot, message: Message):
         await message.reply(
             helpers.forcemsg.format(first=fnme, full=full, mention=ment),
             reply_markup=bttn,
-            parse_mode=ParseMode.HTML,
         )
         return await message.delete()
 
