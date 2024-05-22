@@ -1,6 +1,7 @@
-from bot.utils.db import Database
-from bot.utils.logger import Logger
 from config import Config
+
+from .db import Database
+from .logger import Logger
 
 
 class Cache:
