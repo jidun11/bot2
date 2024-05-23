@@ -1,5 +1,6 @@
 import asyncio
 
+from pyrogram.enums import ParseMode as PM
 from pyrogram.errors import FloodWait, RPCError
 from pyrogram.filters import command, private
 from pyrogram.handlers import MessageHandler as Msg
@@ -24,11 +25,13 @@ async def start(client: Bot, message: Message):
             await message.reply(
                 helpers.startmsg.format(first=fnme, full=full, mention=ment),
                 reply_markup=helpers.admikb(),
+                parse_mode=PM.DEFAULT,
             )
         else:
             await message.reply(
                 helpers.startmsg.format(first=fnme, full=full, mention=ment),
                 reply_markup=bttn,
+                parse_mode=PM.DEFAULT,
             )
         return await message.delete()
 
@@ -36,6 +39,7 @@ async def start(client: Bot, message: Message):
         await message.reply(
             helpers.forcemsg.format(first=fnme, full=full, mention=ment),
             reply_markup=bttn,
+            parse_mode=PM.DEFAULT,
         )
         return await message.delete()
 

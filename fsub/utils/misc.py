@@ -40,3 +40,28 @@ class Commands:
 
 
 Commands = Commands()
+
+
+Help = """
+Admins (also Owner):
+ - `/set`: Bot Configuration
+ - `/batch`: Generating Batch
+ - `/bc` [Reply to Message]: Broadcast
+
+Owner Only:
+ - `/log`: Get Logs
+ - `/r`: Restart Bot
+ - `/e`: Evaluate Code
+"""
+
+Format = """
+Extras:
+ - `{first}`: First Name
+ - `{full}`: Full Name
+ - `{mention}`: Mention
+
+Parse:
+ - `<b>Bold</b>`: **Bold**
+ - `<i>Italic</i>`: __Italic__
+ - etc.
+"""

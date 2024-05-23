@@ -174,7 +174,7 @@ class Markup(List[List[Tuple[str, str]]]):
         [("Start Text", "set-strtmsg"), ("Force Text", "set-frcmsg")],
         [("Protect Content", "set-prtctcntnt")],
         [("Admin IDs", "set-admnids"), ("FSub IDs", "set-fscids")],
-        [("Monitor and Stats", "home-stats")],
+        [("Stats", "home-stats"), ("Help", "home-help")],
         [("Close", "home-close")],
     ]
 
