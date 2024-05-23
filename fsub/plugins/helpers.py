@@ -168,13 +168,43 @@ class Decorator:
 decorator = Decorator()
 
 
+class Text(str):
+    Parse = """
+Extras:
+ - `{first}`: First Name
+ - `{full}`: Full Name
+ - `{mention}`: Mention
+
+Styles:
+ - `<b>Bold</b>`: **Bold**
+ - `<i>Italic</i>`: __Italic__
+ - etc.
+"""
+
+    Help = f"""
+Owner Only:
+ - `/{Bot.cmd.log}`: Bot Logs
+ - `/{Bot.cmd.evaluate}`: Evaluate Code
+ - `/{Bot.cmd.restart}`: Restart Bot
+
+Bot Admins:
+ - `/{Bot.cmd.configs}`: Bot Configuration
+ - `/{Bot.cmd.batch}`: Generate Batch
+ - `/{Bot.cmd.broadcast}` [Reply to Message]: Broadcasting
+"""
+
+
+Text = Text()
+
+
 class Markup(List[List[Tuple[str, str]]]):
     HOME = [
         [("Generate Controller", "set-gen")],
         [("Start Text", "set-strtmsg"), ("Force Text", "set-frcmsg")],
         [("Protect Content", "set-prtctcntnt")],
         [("Admin IDs", "set-admnids"), ("FSub IDs", "set-fscids")],
-        [("Stats", "home-stats"), ("Help", "home-help")],
+        [("Monitor and Stats", "home-stats")],
+        [("Help", "home-help"), ("Coder", "t.me/ilhamtg", "url")],
         [("Close", "home-close")],
     ]
 

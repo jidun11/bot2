@@ -8,8 +8,7 @@ from pyrogram.types import CallbackQuery, Message
 
 from fsub import Bot
 
-from ..utils import Format, Help
-from .helpers import Markup, decorator, helpers
+from .helpers import Markup, Text, decorator, helpers
 
 
 @decorator(["adminsOnly"])
@@ -27,7 +26,7 @@ async def cbqhome(client: Bot, cbq: CallbackQuery):
             "Bot Configuration:", reply_markup=ikb(Markup.HOME)
         ),
         "stats": lambda: cbq.message.edit("Bot Stats:", reply_markup=ikb(Markup.STATS)),
-        "help": lambda: cbq.message.edit(str(Help), reply_markup=ikb(Markup.BACK)),
+        "help": lambda: cbq.message.edit(Text.Help, reply_markup=ikb(Markup.BACK)),
     }
     if action := action.get(data):
         await action()
@@ -97,7 +96,7 @@ async def cbqchange(client: Bot, cbq: CallbackQuery):
     elif data in ["strtmsg", "frcmsg"]:
         text = "Start" if data == "strtmsg" else "Force"
         await cbq.message.edit(
-            f"Send {text} Text\n\n{Format}", parse_mode=ParseMode.MARKDOWN
+            f"Send {text} Text\n\n{Text.Parse}", parse_mode=ParseMode.MARKDOWN
         )
         lstn = await client.listen(user_id=cbq.message.chat.id)
         await lstn.delete()
