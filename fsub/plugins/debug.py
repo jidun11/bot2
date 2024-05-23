@@ -64,8 +64,6 @@ async def restart(client: Bot, message: Message):
     msg = await message.reply("Restarting...")
     await client.mdb.inmsg("rmsg", message.chat.id, msg.id)
     await message.delete()
-    with open("log.txt", "r+") as w:
-        w.truncate(0)
     subprocess.run(["python", "-m", "fsub"])
 
 

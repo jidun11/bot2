@@ -1,5 +1,6 @@
 import datetime
 import logging
+from logging.handlers import RotatingFileHandler
 
 
 class Time:
@@ -29,7 +30,16 @@ class Logger:
         logging.basicConfig(
             format="%(asctime)s | %(levelname)s | %(name)s | " "%(message)s",
             datefmt="%b %d | %X",
-            handlers=[logging.FileHandler("log.txt"), logging.StreamHandler()],
+            handlers=[
+                RotatingFileHandler(
+                    "log.txt",
+                    mode="a",
+                    maxBytes=32768,
+                    backupCount=1,
+                    encoding="utf-8",
+                ),
+                logging.StreamHandler(),
+            ],
             level=logging.INFO,
         )
         logging.getLogger("pyrogram").setLevel(logging.WARNING)
