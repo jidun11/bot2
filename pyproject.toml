@@ -1,15 +1,15 @@
 [tool.poetry]
 package-mode = false
 name = "fsub"
-version = "0.1.0"
+version = "0.2.0"
 description = "File Sharing Telegram Bot"
 authors = ["ilhamm <ilhamm@murena.io>"]
-license = "GPL-V3"
+license = "GPL-3.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
-pyrofork = "^2.3.21.post3"
+python = "^3.10"
+pyrofork = "^2.3.20"
 TgCrypto-pyrofork = "^1.2.6"
 uvloop = "^0.19.0"
 motor = {extras = ["srv"], version = "^3.4.0"}
