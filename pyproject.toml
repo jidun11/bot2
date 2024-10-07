@@ -9,7 +9,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pyrofork = "^2.3.24"
+pyrofork = "^2.3.47"
 TgCrypto-pyrofork = "^1.2.6"
 uvloop = "^0.19.0"
 motor = {extras = ["srv"], version = "^3.4.0"}
